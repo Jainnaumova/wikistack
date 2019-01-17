@@ -19,6 +19,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/wiki", require("./routes/wiki"))
+app.use("/user", require("./routes/user"))
 
 app.get("/", (req, res) => {
   res.send(layout("Hello world"));

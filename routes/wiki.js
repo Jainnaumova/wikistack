@@ -10,4 +10,18 @@ router.get('/', async(req, res, next) => {
   catch (error){ next(error) }
 })
 
+router.post('/', async(req, res, next) => {
+  try{
+    let posterName = req.body.name;
+    let postContent = req.body.content;
+    const allUsers = await db.User.findAll();
+    if(allUsers.includes(posterName)){
+      const newPost = db.Posts.define()
+    }
+  }
+  catch (error){ next(error) }
+})
+
+
+
 module.exports = router;
