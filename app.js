@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const layout = require("./views/layout");
-const models = require('./models')
-// const { db } = require('./models');
+const models = require("./models");
+// const { db } = require("./models");
 
 const morgan = require("morgan");
 app.use(morgan("dev"));
@@ -16,17 +16,14 @@ app.get("/", (req, res) => {
   res.send(layout("Hello world"));
 });
 
-
-
 const PORT = 1337;
 
-const testFunc = async() => {
-  await models.User.sync()
-  await models.Page.sync()
+const testFunc = async () => {
+  await models.db.sync();
   app.listen(PORT, () => {
     console.log(`app listening in ${PORT}`);
   });
-}
+};
 testFunc();
 
 // db.authenticate().
