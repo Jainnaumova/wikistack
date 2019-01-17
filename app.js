@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const html = require('html-template-tag');
 
 const morgan = require("morgan");
 app.use(morgan("dev"));
@@ -12,3 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   console.log("Hello world");
 });
+
+
+const PORT = 1337;
+
+app.listen(PORT, () => {
+  console.log(`app listening in ${PORT}`)
+})
