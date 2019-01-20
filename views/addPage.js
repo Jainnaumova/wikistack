@@ -38,14 +38,20 @@ module.exports = () =>
       </div>
       <div class="form-group">
         <label for="content" class="col-sm-2 control-label">Your post</label>
-        <div class="col-sm-10">
-          <input id="content" name="content" type="text" class="form-control" />
-        </div>
+        <div class="col-sm-10"><textarea name="content"></textarea></div>
       </div>
       <div class="form-group">
         <label for="status" class="col-sm-2 control-label">Page status</label>
         <div class="col-sm-10">
-          <input id="status" name="status" type="text" class="form-control" />
+          <select
+            id="status"
+            name="status"
+            type="text"
+            class="col-sm-2 control-label"
+          >
+            <option>Open</option>
+            <option>Close</option>
+          </select>
         </div>
       </div>
 

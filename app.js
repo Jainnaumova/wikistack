@@ -24,13 +24,8 @@ app.get("/", (req, res) => res.redirect("/wiki"));
 
 // app.use("/user", require("./routes/user"));
 
-app.get("/", (req, res) => {
-  res.send(layout("Hello world"));
-});
+// app.get("/", (req, res) => {
+//   res.send(layout("Hello world"));
+// });
 
 module.exports = app;
-
-// db.authenticate().
-// then(() => {
-//   console.log('connected to the database');
-// })
