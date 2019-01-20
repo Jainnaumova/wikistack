@@ -6,7 +6,7 @@ const models = require("./models");
 const wikiRouter = require("./routes/wiki");
 const userRouter = require("./routes/user");
 
-// const { db } = require("./models");
+const { db } = require("./models");
 
 const morgan = require("morgan");
 
@@ -28,15 +28,7 @@ app.get("/", (req, res) => {
   res.send(layout("Hello world"));
 });
 
-const PORT = 1337;
-
-const testFunc = async () => {
-  await models.db.sync();
-  app.listen(PORT, () => {
-    console.log(`app listening in ${PORT}`);
-  });
-};
-testFunc();
+module.exports = app;
 
 // db.authenticate().
 // then(() => {

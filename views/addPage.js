@@ -7,13 +7,13 @@ module.exports = () =>
     <hr />
     <form method="POST" action="/wiki/">
       <div class="form-group">
-        <label for="title" class="col-sm-2 control-label">title</label>
+        <label for="title" class="col-sm-2 control-label">Title</label>
         <div class="col-sm-10">
           <input id="title" name="title" type="text" class="form-control" />
         </div>
       </div>
       <div class="form-group">
-        <label for="authorName" class="col-sm-2 control-label">your name</label>
+        <label for="authorName" class="col-sm-2 control-label">Your name</label>
         <div class="col-sm-10">
           <input
             id="authorName"
@@ -25,7 +25,7 @@ module.exports = () =>
       </div>
       <div class="form-group">
         <label for="authorEmail" class="col-sm-2 control-label"
-          >your email</label
+          >Your email</label
         >
         <div class="col-sm-10">
           <input
@@ -37,20 +37,20 @@ module.exports = () =>
         </div>
       </div>
       <div class="form-group">
-        <label for="content" class="col-sm-2 control-label">your post</label>
+        <label for="content" class="col-sm-2 control-label">Your post</label>
         <div class="col-sm-10">
           <input id="content" name="content" type="text" class="form-control" />
         </div>
       </div>
       <div class="form-group">
-        <label for="status" class="col-sm-2 control-label">page status</label>
+        <label for="status" class="col-sm-2 control-label">Page status</label>
         <div class="col-sm-10">
           <input id="status" name="status" type="text" class="form-control" />
         </div>
       </div>
 
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
   `);
