@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../models/index");
-// const addPage = require("../views/addPage");
+const db = require("../models");
+const bodyParser = require("body-parser");
+const { Page } = require("../models");
+
 const {
   addPage,
   editPage,
@@ -10,6 +12,8 @@ const {
   userPages,
   wikipage
 } = require("../views");
+
+router.use(bodyParser.json());
 
 // localhost: 1337/wiki/
 router.get("/", async (req, res, next) => {
@@ -23,13 +27,13 @@ router.get("/", async (req, res, next) => {
 // localhost: 1337/wiki/
 router.post("/", async (req, res, next) => {
   try {
-    // let posterName = req.body.name;
-    // let postContent = req.body.content;
-    // const allUsers = await db.User.findAll();
-    // if (allUsers.includes(posterName)) {
-    //   const newPost = db.Posts.define();
-    res.send(req.body);
-    // }
+    const page = new Page({
+      title: req.body.title,
+      content: req.body.content
+    });
+
+    await page.save(); // save post data
+    res.redirect("/"); // redirect page after saving our post data
   } catch (error) {
     next(error);
   }
