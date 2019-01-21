@@ -38,6 +38,7 @@ router.post("/", async (req, res, next) => {
       title: req.body.title,
       content: req.body.content
     });
+
     await page.save(); // save post data
     page.setAuthor(user); // connect page to the certain user in DB
     res.redirect(`/wiki/${page.slug}`); // redirect page after saving our post data
@@ -62,6 +63,9 @@ router.get("/:slug", async (req, res, next) => {
         slug: req.params.slug
       }
     });
+    if (page === null) {
+      res.sendStatus(404);
+    }
     const author = await page.getAuthor();
     res.send(wikiPage(page, author));
     // res.send(`Your dynamic route: ${req.params.slug}`);  check if it works
