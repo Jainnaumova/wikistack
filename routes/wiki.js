@@ -74,4 +74,19 @@ router.get("/:slug", async (req, res, next) => {
   }
 });
 
+router.get("/:slug/edit", async (req, res, next) => {
+  try {
+    const page = await Page.findOne({
+      where: {
+        slug: req.params.slug
+      }
+    });
+    if (page === null) {
+      res.sendStatus(404);
+    } else {
+      const author = await page.getAuthor();
+      res.send(editPage(page, author));
+    }
+  } catch (error) {}
+});
 module.exports = router;
