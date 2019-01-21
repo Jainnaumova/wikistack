@@ -10,7 +10,7 @@ const {
   main,
   userList,
   userPages,
-  wikipage
+  wikiPage
 } = require("../views");
 
 router.use(bodyParser.json());
@@ -33,7 +33,7 @@ router.post("/", async (req, res, next) => {
     });
 
     await page.save(); // save post data
-    res.redirect("/"); // redirect page after saving our post data
+    res.redirect(`/wiki/${page.slug}`); // redirect page after saving our post data
   } catch (error) {
     next(error);
   }
@@ -55,7 +55,8 @@ router.get("/:slug", async (req, res, next) => {
         slug: req.params.slug
       }
     });
-    res.send(page);
+
+    res.send(wikiPage(page));
     // res.send(`Your dynamic route: ${req.params.slug}`);  check if it works
   } catch (error) {
     next(error);
