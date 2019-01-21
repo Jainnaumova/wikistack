@@ -41,9 +41,22 @@ router.post("/", async (req, res, next) => {
 //localhost:1337/wiki/add/
 router.get("/add", async (req, res, next) => {
   try {
-    // const allPosts = await db.Page.findAll();
-    // res.send(allPosts);
     res.send(addPage());
+  } catch (error) {
+    next(error);
+  }
+});
+//localhost:1337/wiki/:slug/
+router.get("/:slug", async (req, res, next) => {
+  // has to be below than /add
+  try {
+    const page = await Page.findOne({
+      where: {
+        slug: req.params.slug
+      }
+    });
+    res.send(page);
+    // res.send(`Your dynamic route: ${req.params.slug}`);  check if it works
   } catch (error) {
     next(error);
   }
