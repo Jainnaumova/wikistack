@@ -18,3 +18,5 @@ const testFunc = async () => {
 testFunc();
 
 // module.exports = server;
+
+// !!!! line 11: "await models.db.sync({force: true})" automatically sync DB if add any chandes in models/index.js with losting previous data in DB
