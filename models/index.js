@@ -38,7 +38,7 @@ const User = db.define("user", {
   }
 });
 
-Page.belongsTo(User, { as: "author" });
+Page.belongsTo(User, { as: "author" }); // appear new colomn in pages table named as 'authorID'
 User.hasMany(Page);
 // db.authenticate().then(() => {       // check the connection with DataBase
 //   console.log("Connected to DB succesfully");

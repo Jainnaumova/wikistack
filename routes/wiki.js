@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 // const db = require("../models");
 const bodyParser = require("body-parser");
-const { Page } = require("../models");
+const { Page, User } = require("../models");
 
 const {
   addPage,
@@ -27,12 +27,19 @@ router.get("/", async (req, res, next) => {
 // localhost: 1337/wiki/
 router.post("/", async (req, res, next) => {
   try {
+    const [user, wasCreated] = await User.findOrCreate({
+      // if user exist than add data, if not create user and than add data
+      where: {
+        name: req.body.authorName, // from 'addPage.js' file
+        email: req.body.authorEmail // name & email from DB tables colomn names
+      }
+    });
     const page = new Page({
       title: req.body.title,
       content: req.body.content
     });
-
     await page.save(); // save post data
+    page.setAuthor(user); // connect page to the certain user in DB
     res.redirect(`/wiki/${page.slug}`); // redirect page after saving our post data
   } catch (error) {
     next(error);
