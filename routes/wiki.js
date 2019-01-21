@@ -62,8 +62,8 @@ router.get("/:slug", async (req, res, next) => {
         slug: req.params.slug
       }
     });
-
-    res.send(wikiPage(page));
+    const author = await page.getAuthor();
+    res.send(wikiPage(page, author));
     // res.send(`Your dynamic route: ${req.params.slug}`);  check if it works
   } catch (error) {
     next(error);
