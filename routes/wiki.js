@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../models");
+// const db = require("../models");
 const bodyParser = require("body-parser");
 const { Page } = require("../models");
 
@@ -18,8 +18,8 @@ router.use(bodyParser.json());
 // localhost: 1337/wiki/
 router.get("/", async (req, res, next) => {
   try {
-    const allPosts = await db.Page.findAll();
-    res.send(allPosts);
+    const allPosts = await Page.findAll();
+    res.send(main(allPosts));
   } catch (error) {
     next(error);
   }
