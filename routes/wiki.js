@@ -73,7 +73,34 @@ router.get("/:slug", async (req, res, next) => {
     next(error);
   }
 });
+// posting of updated post and getting the updated page
+router.post("/:slug", async (req, res, next) => {
+  try {
+    const [numberOfUpdatedRows, updatedPages] = await Page.update(req.body, {
+      where: {
+        slug: req.params.slug
+      },
+      returning: true
+    });
+    res.redirect(`/wiki/${updatedPages[0].slug}`);
+  } catch (error) {
+    next(error);
+  }
+});
 
+router.get("/:slug/delete", async (req, res, next) => {
+  try {
+    await Page.destroy({
+      where: {
+        slug: req.params.slug
+      }
+    });
+    res.redirect("/wiki");
+  } catch (error) {
+    next(error);
+  }
+});
+// get editPage depends on slug
 router.get("/:slug/edit", async (req, res, next) => {
   try {
     const page = await Page.findOne({
